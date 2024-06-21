@@ -2,6 +2,7 @@ import NextAuth from "next-auth";
 import Credentials from "next-auth/providers/credentials";
 import db from '@/lib/db'
 import {compareSync} from 'bcrypt-ts'
+import GitHubProvider from "next-auth/providers/github"
 
 //exporta uma fução auth
 export const {
@@ -49,5 +50,6 @@ export const {
         return user
       },
     }),
+    GitHubProvider({})
   ],
 });
