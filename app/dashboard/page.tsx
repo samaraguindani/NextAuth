@@ -20,6 +20,9 @@ export default async function Dashboard() {
           <Image src={session.user?.image ?? ''} alt="Imagem do usuario" width={100} height={100} className="rounded-full mx-auto"/>
         )}
         <h3 className="mt-4 font-bold text-muted-foreground">Boas vindas, {session.user?.name}!</h3>
+        <p className="texts-xs">Seguidores no github: {session.user?.githubProfile.followers}</p>
+        <p className="texts-xs">Numero de repositórios privados: {session.user?.githubProfile.total_private_repos}</p>
+        <p className="texts-xs">Numero de repositórios publicos: {session.user?.githubProfile.public_repos}</p>
         <hr className="w-1/4 mx-auto mt-5 mb-16" />
         <section className='flex flex-wrap items-center justify-center gap-3'>
           <form action={logout}>
