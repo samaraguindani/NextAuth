@@ -3,18 +3,20 @@ import Credentials from "next-auth/providers/credentials";
 import db from '@/lib/db'
 import {compareSync} from 'bcrypt-ts'
 import GitHubProvider from "next-auth/providers/github"
+import {PrismaAdapter} from '@auth/prisma-adapter'
+import { PrismaClient } from "@prisma/client";
 
-//exporta uma fução auth
+const prisma = new PrismaClient();
 export const {
   handlers: { GET, POST },
   auth,
   signIn,
   signOut
 } = NextAuth({
-    // pages: {
-    //     signIn: '/login',
-    //     signOut: '/logout',
-    // },
+  adapter: PrismaAdapter(prisma),
+  session: {
+    strategy: 'jwt'
+  },
   providers: [
     Credentials({
       credentials: {
@@ -50,6 +52,12 @@ export const {
         return user
       },
     }),
-    GitHubProvider({})
+    GitHubProvider({
+      allowDangerousEmailAccountLinking: true
+    })
   ],
+   // pages: {
+    //     signIn: '/login',
+    //     signOut: '/logout',
+    // },
 });
