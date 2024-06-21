@@ -7,7 +7,8 @@ import {compareSync} from 'bcrypt-ts'
 export const {
   handlers: { GET, POST },
   auth,
-  signIn
+  signIn,
+  signOut
 } = NextAuth({
     // pages: {
     //     signIn: '/login',
