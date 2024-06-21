@@ -45,7 +45,7 @@ export const {
         if (matches) {
             return{id: user.id, name: user.name, email: user.email}
         }
-        return null
+        return user
       },
     }),
   ],
