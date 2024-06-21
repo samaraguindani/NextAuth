@@ -7,12 +7,22 @@ import {compareSync} from 'bcrypt-ts'
 export const {
   handlers: { GET, POST },
   auth,
+  signIn
 } = NextAuth({
+    // pages: {
+    //     signIn: '/login',
+    //     signOut: '/logout',
+    // },
   providers: [
     Credentials({
       credentials: {
-        email: {},
-        password: {},
+        email: {
+            label: 'Email'
+        },
+        password: {
+            label: 'Password',
+            type: 'password'
+        },
       },
       async authorize(credentials) {
         const email = credentials.email as string
