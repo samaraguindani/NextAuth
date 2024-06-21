@@ -8,7 +8,7 @@ import Image from 'next/image';
 
 export default async function Dashboard() {
   const session = await auth();
-  if (!session) redirect('/login-server');
+  if (!session) redirect('/');
 
   return (
     <main className="container p-20 mx-auto text-center">
